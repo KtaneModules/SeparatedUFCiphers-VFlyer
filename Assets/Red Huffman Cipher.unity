@@ -152,10 +152,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 1637555480456156, guid: cec0482d2becc0847812dd12757ac874, type: 2}
-      propertyPath: m_Name
-      value: Red Huffman Cipher
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cec0482d2becc0847812dd12757ac874, type: 2}
   m_IsPrefabParent: 0

@@ -372,15 +372,14 @@ public class _3x3YellowCipherScript : MonoBehaviour {
 		var split = command.ToUpperInvariant().Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
 		if (split.Length != 2 || !split[0].Equals("SUBMIT"))
 			yield break;
-		if (split[1].Length > maxLengthInput || split[1].Length < minLengthInput)
-        {
-			yield return string.Format("sendtochaterror You're attempting to send a word that is {0} letter(s) long! The correct word does not have that many letters.", split[1].Length);
-			yield break;
-        }
 		var buttons = split[1].Select(getPositionFromChar).ToArray();
 		if (buttons.Any(x => x < 0))
 			yield break;
-
+		if (buttons.Length > maxLengthInput || buttons.Length < minLengthInput)
+		{
+			yield return string.Format("sendtochaterror You're attempting to send a word that is {0} letter(s) long! The correct word does not have that many letters.", split[1].Length);
+			yield break;
+		}
 		yield return null;
 
 		foreach (var let in split[1])
