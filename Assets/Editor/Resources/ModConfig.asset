@@ -34,6 +34,6 @@ MonoBehaviour:
     Red Huffman Cipher texture modified by VFlyer, originally by Timwi.
 
 '
-  version: 1.0
+  version: 1.0_01
   outputFolder: build
   previewImage: {fileID: 2800000, guid: ab0ca6329bbfef14b812f27b39c0a581, type: 3}

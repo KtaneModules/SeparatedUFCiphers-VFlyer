@@ -19,7 +19,7 @@ public class _3x3YellowCipherScript : MonoBehaviour {
 	int moduleID;
 	string inputtedWord = "", expectedWord;
 	const string alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ", keyboardLayout = "QWERTYUIOPASDFGHJKLZXCVBNM";
-	const int maxLengthInput = 6;
+	const int maxLengthInput = 6, minLengthInput = 6;
 	List<string> displays;
 	List<bool> invertDisplays;
 	bool moduleSelected, moduleSolved;
@@ -350,7 +350,7 @@ public class _3x3YellowCipherScript : MonoBehaviour {
 		}
 	}
 #pragma warning disable 414
-	protected string TwitchHelpMessage = "!{0} right/left [move between screens] | !{0} submit <answer> [Submits <answer>]";
+	protected string TwitchHelpMessage = "!{0} right/left/r/l [move between screens] | !{0} submit <answer> [Submits <answer> of 6 letters in length]";
 #pragma warning restore 414
 
 	protected IEnumerator ProcessTwitchCommand(string command)
@@ -370,8 +370,13 @@ public class _3x3YellowCipherScript : MonoBehaviour {
 		}
 
 		var split = command.ToUpperInvariant().Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-		if (split.Length != 2 || !split[0].Equals("SUBMIT") || split[1].Length > maxLengthInput)
+		if (split.Length != 2 || !split[0].Equals("SUBMIT"))
 			yield break;
+		if (split[1].Length > maxLengthInput || split[1].Length < minLengthInput)
+        {
+			yield return string.Format("sendtochaterror You're attempting to send a word that is {0} letter(s) long! The correct word does not have that many letters.", split[1].Length);
+			yield break;
+        }
 		var buttons = split[1].Select(getPositionFromChar).ToArray();
 		if (buttons.Any(x => x < 0))
 			yield break;
