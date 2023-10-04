@@ -229,7 +229,6 @@ public class DecomposedRGBArithmeticScript : MonoBehaviour
         var possibleDistributions = new[] { new[] { 4, 6 }, new[] { 5, 5 } };
 
         var selectedWords = possibleDistributions.PickRandom().Select(a => CipherMachineData._allWords[a].PickRandom()).ToArray().Shuffle();
-        QuickLogDebug(selectedWords.Join());
         expectedGrid = selectedWords.Join("").Select(a => usedAlphabetDecomp.IndexOf(a)).ToArray();
 
         var numPickedOpers = Random.Range(1, 3);
@@ -367,6 +366,8 @@ public class DecomposedRGBArithmeticScript : MonoBehaviour
 
         QuickLog("The center grid should display:");
         LogGrid(expectedGrid);
+
+        QuickLog("Decrypting the center grid gives these two words in reading order: {0}",selectedWords.Join());
 
         maxStep = 60;
 
